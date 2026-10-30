@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>宝可梦先锋 Web</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        overflow: hidden;
+        height: 100%;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      #app {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      canvas {
+        image-rendering: pixelated;
+      }
+      #touch {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+      }
+      #dpad {
+        position: absolute;
+        left: 12px;
+        bottom: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, 48px);
+        grid-template-rows: repeat(3, 48px);
+        gap: 2px;
+        pointer-events: auto;
+        opacity: 0.55;
+      }
+      #dpad button,
+      #btn-action {
+        background: #1c2430cc;
+        color: #fff;
+        border: 1px solid #ffffff40;
+        border-radius: 8px;
+        font-size: 18px;
+        padding: 0;
+        touch-action: none;
+      }
+      #dpad button:active,
+      #btn-action:active {
+        background: #3d5a80cc;
+      }
+      #dpad .up {
+        grid-area: 1 / 2;
+      }
+      #dpad .left {
+        grid-area: 2 / 1;
+      }
+      #dpad .right {
+        grid-area: 2 / 3;
+      }
+      #dpad .down {
+        grid-area: 3 / 2;
+      }
+      #btn-action {
+        position: absolute;
+        right: 20px;
+        bottom: 48px;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        font-size: 20px;
+        pointer-events: auto;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="touch">
+      <div id="dpad">
+        <button class="up" data-dir="8">▲</button>
+        <button class="left" data-dir="4">◀</button>
+        <button class="right" data-dir="6">▶</button>
+        <button class="down" data-dir="2">▼</button>
+      </div>
+      <button id="btn-action">A</button>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

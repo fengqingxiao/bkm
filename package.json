@@ -1,0 +1,23 @@
+{
+  "name": "pokemon-vanguard-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:data": "node tools/build-data.mjs",
+    "build:assets": "node tools/extract-assets.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "phaser": "^3.87.0"
+  }
+}
