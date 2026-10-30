@@ -67,7 +67,11 @@ export class MapScene extends Phaser.Scene {
   create(): void {
     this.boot().catch((err) => {
       console.error(err);
-      this.add.text(8, 8, `加载失败: ${String(err)}`, { fontSize: '12px', color: '#ff6666' });
+      const el = document.getElementById('fatal');
+      if (el) {
+        el.hidden = false;
+        el.textContent = `启动失败：${String(err)}\n${String((err as Error)?.stack ?? '')}\n渲染器：${this.game.renderer.type === Phaser.WEBGL ? 'WebGL' : 'Canvas'}　可用 renderer=canvas 参数回退`;
+      }
     });
   }
 
@@ -120,6 +124,7 @@ export class MapScene extends Phaser.Scene {
 
     this.audio.playBgm(this.map.bgm?.name ?? '', this.map.bgm?.volume ?? 100, this.map.bgm?.pitch ?? 100);
     this.ready = true;
+    document.getElementById('boot')?.remove();
   }
 
   /** RGSS anchors character sprites at the bottom centre of their tile. */

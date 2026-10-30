@@ -1,8 +1,21 @@
 import Phaser from 'phaser';
 import { MapScene } from './scenes/MapScene';
 
+const params = new URLSearchParams(location.search);
+const forceCanvas = params.get('renderer') === 'canvas';
+
+function fatal(message: string): void {
+  const el = document.getElementById('fatal');
+  if (!el) return;
+  el.hidden = false;
+  el.textContent = message;
+}
+
+window.addEventListener('error', (e) => fatal(`运行错误：${e.message || String(e.error)}`));
+window.addEventListener('unhandledrejection', (e) => fatal(`加载失败：${String(e.reason)}`));
+
 const game = new Phaser.Game({
-  type: Phaser.WEBGL,
+  type: forceCanvas ? Phaser.CANVAS : Phaser.AUTO,
   parent: 'app',
   width: 640,
   height: 480,
@@ -11,7 +24,6 @@ const game = new Phaser.Game({
   render: {
     antialias: false,
     pixelArt: true,
-    preserveDrawingBuffer: true,
   },
   scale: {
     mode: Phaser.Scale.EXPAND,

@@ -26,6 +26,29 @@
       canvas {
         image-rendering: pixelated;
       }
+      #boot,
+      #fatal {
+        position: fixed;
+        left: 0;
+        right: 0;
+        padding: 8px 12px;
+        font: 13px/1.5 system-ui, sans-serif;
+        color: #fff;
+        z-index: 10000;
+        pointer-events: none;
+      }
+      #boot {
+        bottom: 0;
+        background: #0009;
+      }
+      #fatal {
+        top: 0;
+        background: #7a1020ee;
+        white-space: pre-wrap;
+        max-height: 50vh;
+        overflow: auto;
+        pointer-events: auto;
+      }
       #touch {
         position: fixed;
         inset: 0;
@@ -83,6 +106,8 @@
   </head>
   <body>
     <div id="app"></div>
+    <div id="boot">加载中…</div>
+    <div id="fatal" hidden></div>
     <div id="touch">
       <div id="dpad">
         <button class="up" data-dir="8">▲</button>
